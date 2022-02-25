@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="net.analyse.sdk.AnalyseSDKTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-02-25T14:00:16" hostname="Charlies-MacBook-Pro.local" time="1.089">
-  <properties/>
-  <testcase name="test" classname="net.analyse.sdk.AnalyseSDKTest" time="1.089"/>
-  <system-out><![CDATA[okhttp3.internal.http.RealResponseBody@7d3fb643
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
