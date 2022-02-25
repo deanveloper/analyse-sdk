@@ -13,11 +13,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13")
-
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.google.code.gson:gson:2.8.9")
-
     compileOnly("org.jetbrains:annotations:16.0.2")
 }
 
