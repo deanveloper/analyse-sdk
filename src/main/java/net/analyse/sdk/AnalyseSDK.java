@@ -91,7 +91,6 @@ public class AnalyseSDK {
             throw new ServerNotFoundException();
         }
 
-        System.out.println(response.body().toString());
         String countryCode = null;
         try {
             JsonObject bodyJson = GSON.fromJson(response.body().string(), JsonObject.class);
