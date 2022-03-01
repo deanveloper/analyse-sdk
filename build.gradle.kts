@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar;
+import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocation
 
 plugins {
     java
@@ -13,14 +14,22 @@ repositories {
     mavenCentral()
 }
 
+task<ConfigureShadowRelocation>("relocateShadowJar") {
+    target = tasks.shadowJar.get()
+    prefix = "net.analyse.sdk.libs"
+}
+
+tasks.shadowJar.get().dependsOn(tasks.getByName("relocateShadowJar"))
+
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.google.code.gson:gson:2.8.9")
+
     compileOnly("org.jetbrains:annotations:16.0.2")
 }
 
 group = "net.analyse"
-version = "1.0.0"
+version = "1.0.1"
 description = "sdk"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
