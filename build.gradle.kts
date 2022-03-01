@@ -14,13 +14,6 @@ repositories {
     mavenCentral()
 }
 
-task<ConfigureShadowRelocation>("relocateShadowJar") {
-    target = tasks.shadowJar.get()
-    prefix = "net.analyse.sdk.libs"
-}
-
-tasks.shadowJar.get().dependsOn(tasks.getByName("relocateShadowJar"))
-
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.google.code.gson:gson:2.8.9")
@@ -39,14 +32,19 @@ tasks.withType<JavaCompile>() {
     options.encoding = "UTF-8"
 }
 
+task<ConfigureShadowRelocation>("relocateShadowJar") {
+    target = tasks.shadowJar.get()
+    prefix = "net.analyse.sdk.libs"
+}
 
+tasks.shadowJar.get().dependsOn(tasks.getByName("relocateShadowJar"))
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "net.analyse"
             artifactId = "sdk"
-            version = "1.0.0"
+            version = "1.0.1"
 
             from(components["java"])
 
