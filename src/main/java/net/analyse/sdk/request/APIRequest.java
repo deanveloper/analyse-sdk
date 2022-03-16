@@ -7,14 +7,13 @@ import java.io.IOException;
 
 public class APIRequest {
 
-    private static final String BASE_URL = "https://app.analyse.net/api/v1/";
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
     private final OkHttpClient client = new OkHttpClient();
     private final Request.Builder request;
 
     public APIRequest(final @NotNull String url) {
-        this.request = new Request.Builder().url(BASE_URL + url);
+        this.request = new Request.Builder().url(url);
     }
 
     public APIRequest withPayload(final @NotNull String payload) {

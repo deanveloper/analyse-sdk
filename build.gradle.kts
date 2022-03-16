@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = "net.analyse"
-version = "1.0.1"
+version = "1.0.2"
 description = "sdk"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -44,7 +44,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "net.analyse"
             artifactId = "sdk"
-            version = "1.0.1"
+            version = "1.0.2"
 
             from(components["java"])
 

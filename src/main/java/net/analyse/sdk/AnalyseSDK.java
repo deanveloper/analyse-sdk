@@ -24,16 +24,28 @@ import java.util.UUID;
 public class AnalyseSDK {
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    private String token;
-    private String encryptionKey;
+    private final String token;
+    private final String encryptionKey;
+    private final String baseUrl;
 
     public AnalyseSDK(String token, String encryptionKey) {
         this.token = token;
         this.encryptionKey = encryptionKey;
+        this.baseUrl = "https://app.analyse.net/api/v1/";
+    }
+
+    public AnalyseSDK(String token, String encryptionKey, String baseUrl) {
+        this.token = token;
+        this.encryptionKey = encryptionKey;
+        this.baseUrl = baseUrl;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
     public GetServerResponse getServer() throws ServerNotFoundException {
-        Response response = new APIRequest("server")
+        Response response = new APIRequest(baseUrl + "server")
                 .withServerToken(this.token)
                 .send();
 
@@ -69,7 +81,7 @@ public class AnalyseSDK {
     public void sendHeartbeat(int players) throws ServerNotFoundException {
         ServerHeartbeatRequest serverHeartbeatRequest = new ServerHeartbeatRequest(players);
 
-        Response response = new APIRequest("server/heartbeat")
+        Response response = new APIRequest(baseUrl + "server/heartbeat")
                 .withServerToken(this.token)
                 .withPayload(serverHeartbeatRequest.toJson())
                 .send();
@@ -82,7 +94,7 @@ public class AnalyseSDK {
     }
 
     public String getLocationFromIP(String ipAddress) throws ServerNotFoundException, InvalidIPAddressException {
-        Response response = new APIRequest("ip/" + ipAddress)
+        Response response = new APIRequest(baseUrl + "ip/" + ipAddress)
                 .withServerToken(this.token)
                 .send();
 
@@ -132,7 +144,7 @@ public class AnalyseSDK {
                 playerStatistics
         );
 
-        Response response = new APIRequest("server/sessions")
+        Response response = new APIRequest(baseUrl + "server/sessions")
                 .withPayload(playerSessionRequest.toJson())
                 .withServerToken(this.token)
                 .send();
